@@ -19,19 +19,15 @@ ok( $agent = Win32::MSAgent->new(),                           'Can create a new 
 isa_ok($agent, 'Win32::MSAgent');
 
 # 4. test if the languages can be retrieved
-ok( @langs = $agent->Characters->ListLanguages(),             'Can fetch languages');
+ok( @langs = $agent->GetInstalledLanguages(),             'Can fetch languages');
 # 5. test if the voices for 'English (US)' can be retrieved
-ok( @voices = $agent->Characters->ListVoices('English (US)'), 'Can fetch a voice');
+ok( @voices = $agent->GetInstalledVoices($langs[0]), 'Can fetch a voice');
 
-# get the systemroot (under which the MS Agent characterfiles are installed somewhere
-$systemroot = $ENV{SYSTEMROOT} || $ENV{WINDIR} || 'C:\WINDOWS';
-print "I'm going to look for MS Agent Character files (.ACS files) under $systemroot now\n";
+print "I'm going to look for MS Agent Character files (.ACS files) now\n";
+my @chars = $agent->GetInstalledCharacters();
 
-# Find installed characters on this system
-find(sub {$chars{$_} = $File::Find::name if $_=~ /.*?\.acs$/i; }, $systemroot);
-print "I did not find any Microsoft Agent Character files on your system\n" unless %chars;
-$char = (keys %chars)[0];
-$char =~ s/(.*)?\..*/$1/;
+print "I did not find any Microsoft Agent Character files on your system\n" unless @chars;
+$char = $chars[0];
 print "I found at least character $char; going to continue testing with $char\n" if $char;
 
 SKIP:{

@@ -39,6 +39,9 @@ make test
 make install
 
 That should do the trick...
+
+Then try to run the enclosed 'demo.pl'
+
 Makefile.PL checks if we're on a Microsoft platform, and if the MS Agent 2.0 component
 is installed (it uses Win32::OLE for this check). If those checks don't succeed, no
 Makefile will be written. If you think this is an error, please notify me, and remove 

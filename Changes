@@ -1,10 +1,13 @@
 Revision history for Perl extension Win32::MSAgent.
 
+0.06  September 30, 2003
+    - Rewrote the module from scratch.
+    - No more wrappers, the constructor loads the OLE object and
+      autoload does the rest
+    - Added GetInstalledLanguages, GetInstalledVoices, Language2LanguageID and
+      Voice2ModeID and GetInstalledCharacters
 0.05  June 25, 2003
-    - Changed the behaviour of TTSModeID so it now only accepts the ID strings such
-      like {c5c35d60-da44-11d1-B1F1-0000F803E456} (for Microsoft Sam)
-    - Changed the behaviour of LanguageID so it now only accepts Microsoft LanguageID
-      strings such like 0x0409 (for US English)
+    - no comments
 0.04  May 20, 2003
     - Added the Win32::MSAgent::PropertySheet class to be able to show the MSAgent 
       properties and change them.

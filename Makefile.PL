@@ -2,10 +2,6 @@ use ExtUtils::MakeMaker;
 
 die "Win32::MSAgent can only be installed on Microsoft Windows Platforms\n Makefile not written\n\n" unless $^O eq 'MSWin32';
 die "I can't load the MS Agent 2.0 control. Please see the README to find out the required components.\nMakefile not written\n\n" unless tryobject();
-if (eval{use Win32::MSAgent; $Win32::MSAgent::VERSION < 0.05})
-{
-    warn "You are using a previous version of Win32::MSAgent. The behaviour of the TTSModeID and LanguageID have changed. Please see the CHANGES.TXT file for more information";
-}
 
 sub tryobject
 {
@@ -25,6 +21,8 @@ WriteMakefile(
     AUTHOR       => 'Jouke Visser <jouke@cpan.org>',
     ABSTRACT_FROM=> 'lib/Win32/MSAgent.pm',
     PREREQ_PM    => {   'Win32::OLE'            => 0,
-                        'Win32::OLE::Variant'   => 0,
-                        'Win32::OLE::Enum'      => 0}
+                        'Win32::SAPI4'          => 0.03,
+                        'File::Find::Rule'      => 0,
+                        'File::Basename'        => 0
+                        }
 );
