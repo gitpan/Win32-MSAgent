@@ -7,7 +7,7 @@ use Win32::OLE::Variant;
 BEGIN {
 	use Exporter ();
 	use vars qw ($VERSION @ISA @EXPORT @EXPORT_OK %EXPORT_TAGS);
-	$VERSION     = 0.04;
+	$VERSION     = 0.05;
 	@ISA         = qw ();
 	#Give a hoot don't pollute, do not export more than needed by default
 	@EXPORT      = qw ();
@@ -318,6 +318,22 @@ sub Voice
     $self->{_Characters}->{TTSModeID} = $Voices->{$language}->{$voice};
 }
 
+sub LanguageID
+{
+    my $self = shift;
+    my $language = shift;
+    $self->{_Characters}->{LanguageID} = $language if $language;
+    return $self->{_Characters}->{LanguageID};
+}
+
+sub TTSModeID
+{
+    my $self = shift;
+    my $TTSModeID = shift;
+    $self->{_Characters}->{TTSModeID} = $TTSModeID if $TTSModeID;
+    return $self->{_Characters}->{TTSModeID};
+}
+
 sub Active
 {
     my $self = shift;
@@ -356,22 +372,6 @@ sub Pitch
 {
     my $self = shift;
     return $self->{_Characters}->{Pitch};
-}
-
-sub LanguageID
-{
-    my $self = shift;
-    my $language = shift;
-    $self->{_Characters}->{LanguageID} = $Languages->{$language} if $language;
-    return $self->{_Characters}->{LanguageID};
-}
-
-sub TTSModeID
-{
-    my $self = shift;
-    my $TTSModeID = shift;
-    $self->{_Characters}->{TTSModeID} = $Voices->{$self->LanguageID}->{$TTSModeID} if $TTSModeID;
-    return $self->{_Characters}->{TTSModeID};
 }
 
 sub Height
@@ -444,6 +444,8 @@ aloud (and by displaying text onscreen), and even listen for spoken voice comman
 
 Since the MS Agent itself is only available on MS Windows platforms, this module
 will only work on those.
+
+See the included demo.pl for some sample code.
 
 =head1 PREREQUISITES
 
@@ -630,7 +632,12 @@ To stop all queued Speak requests.
 
 =head2 LanguageID
 
+This method accepts a Microsoft LanguageID like 0x0409 for US English
+
 =head2 TTSModeID
+
+This method accepts a speech engine identifier like {c5c35d60-da44-11d1-B1F1-0000F803E456} 
+for Microsoft Sam
 
 =head2 Height
 
@@ -649,7 +656,7 @@ yadayadayada
 
 =head1 BUGS
 
-Hey! Give me some slack! This is only version 0.04! Sure there are bugs!
+None AFAIK...
 
 =head1 SUPPORT
 
@@ -664,7 +671,7 @@ You can email the author for support on this module.
 
 =head1 COPYRIGHT
 
-Copyright (c) 2002 Jouke Visser. All rights reserved.
+Copyright (c) 2002-2003 Jouke Visser. All rights reserved.
 This program is free software; you can redistribute
 it and/or modify it under the same terms as Perl itself.
 
