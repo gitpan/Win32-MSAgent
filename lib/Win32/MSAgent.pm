@@ -370,7 +370,7 @@ sub SoundEffectsOn
 
 =head1 NAME
 
-Win32::MSAgent - 
+Win32::MSAgent - Interface module for the Microsoft Agent
 
 =head1 SYNOPSIS
 

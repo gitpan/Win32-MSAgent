@@ -1,6 +1,10 @@
 Revision history for Perl extension Win32::MSAgent.
 
-0.02  August 30
+0.03  September 3, 2002
+	- Small modification to Makefile.PL
+    - Corrected the testsuite to look for the character files under the systemroot
+      even if it isn't c:\windows
+0.02  August 30 2002
     - Added a lot but not all POD documentation, fixed a few minor bugs.
     - Makefile.PL now checks for MS OS and the presence of the MS Agent control
       if it fails, we won't create a Makefile. Thanks to Podmaster.
