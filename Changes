@@ -1,5 +1,9 @@
 Revision history for Perl extension Win32::MSAgent.
 
+0.04  May 20, 2003
+    - Added the Win32::MSAgent::PropertySheet class to be able to show the MSAgent 
+      properties and change them.
+	- Corrected the systemroot stuff in the demo.pl too 
 0.03  September 3, 2002
 	- Small modification to Makefile.PL
     - Corrected the testsuite to look for the character files under the systemroot

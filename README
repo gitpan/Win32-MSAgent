@@ -26,6 +26,9 @@ Optionally you can install the Speech Recognition Engines and the Speech
 Control Panel. The Speech Recognition part of MS Agent is not supported
 in this version of Win32::MSAgent
 
+For more information on installing the components of Microsoft Agent,
+take a look at http://www.pvoice.org/msagent.html
+
 INSTALL
 
 To install this module you do the following:

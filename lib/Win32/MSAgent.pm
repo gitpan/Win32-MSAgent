@@ -7,7 +7,7 @@ use Win32::OLE::Variant;
 BEGIN {
 	use Exporter ();
 	use vars qw ($VERSION @ISA @EXPORT @EXPORT_OK %EXPORT_TAGS);
-	$VERSION     = 0.02;
+	$VERSION     = 0.04;
 	@ISA         = qw ();
 	#Give a hoot don't pollute, do not export more than needed by default
 	@EXPORT      = qw ();
@@ -67,6 +67,45 @@ sub Characters
         if ((@_) or (not exists $self->{_Characters}));
     return $self->{_Characters};
 }
+
+sub PropertySheet
+{
+    my $self = shift;
+    $self->{_PropertySheet} = Win32::MSAgent::PropertySheet->new($Agent, @_) 
+        if ((@_) or (not exists $self->{_PropertySheet}));
+    return $self->{_PropertySheet};
+}
+
+package Win32::MSAgent::PropertySheet;
+use strict;
+use warnings;
+use Win32::OLE;
+use Win32::OLE::Variant;
+
+sub new
+{
+    my $proto = shift;
+    my $agent = shift;
+    my $self = {};
+    my $class = ref($proto) || $proto;
+    bless $self, $class;
+    $self->{_PropertySheet} = $agent->PropertySheet(@_);
+    return $self;
+}
+
+sub Page
+{
+    my $self = shift;
+    $self->{_PropertySheet}->{Page} = shift;
+}
+
+sub Visible
+{
+    my $self = shift;
+    $self->{_PropertySheet}->{Visible} = shift;
+}
+
+
 
 package Win32::MSAgent::Characters;
 
@@ -410,6 +449,7 @@ will only work on those.
 
 In order to use the MSAgent in your scripts, you need to download and install some
 components. They can all be downloaded for free from http://www.microsoft.com/msagent/devdownloads.htm
+for more information on installation of the neccesary components, visit http://www.pvoice.org/msagent.htm
 
 =over 4
 
@@ -609,7 +649,7 @@ yadayadayada
 
 =head1 BUGS
 
-Hey! Give me some slack! This is only version 0.02! Sure there are bugs!
+Hey! Give me some slack! This is only version 0.04! Sure there are bugs!
 
 =head1 SUPPORT
 

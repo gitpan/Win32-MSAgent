@@ -7,8 +7,9 @@ use File::Find;
 my $agent = Win32::MSAgent->new();
 
 # Find installed characters on this system
+$systemroot = $ENV{SYSTEMROOT} || $ENV{WINDIR} || 'C:\WINDOWS';
 my %chars;
-find(sub {$chars{$_} = $File::Find::name if $_=~ /.*?\.acs$/i; }, "c:\\windows");
+find(sub {$chars{$_} = $File::Find::name if $_=~ /.*?\.acs$/i; }, $systemroot);
 print "I did not find any Microsoft Agent Character files on your system\n" unless %chars;
 my $char = (keys %chars)[0];
 $char =~ s/(.*)?\..*/$1/;
