@@ -3,7 +3,7 @@ Changes
 Makefile.PL
 README
 MANIFEST.SKIP
-.cvsignore
 lib/Win32/MSAgent.pm
 t/01_ini.t
 MANIFEST
+demo.pl

@@ -1,5 +1,15 @@
 Revision history for Perl extension Win32::MSAgent.
 
+0.02  August 30
+    - Added a lot but not all POD documentation, fixed a few minor bugs.
+    - Makefile.PL now checks for MS OS and the presence of the MS Agent control
+      if it fails, we won't create a Makefile. Thanks to Podmaster.
+    - The tests now go and look for installed Character files instead of assuming
+      that a certain character file is installed. The tests will be run using the
+      first Character we find. Thanks to Briac Pilpre.
+    - The Agent control is now loaded only once, when you use Win32::MSAgent, and 
+      not every time you create an instance of the object. Thanks to Stefano Rodighiero.
+    - Added demo.pl for some demonstration of what you can do with this module
 0.01  Thu Aug 29 20:08:22 2002
 	- original version; created by ExtUtils::ModuleMaker 0.204
 
