@@ -1,6 +1,10 @@
 Revision history for Perl extension Win32::MSAgent.
 
-0.06  September 30, 2003
+0.07  October 13, 2004
+    - Fixed a bug in GetInstalledCharacters. File::Find::Rule searched for .acs files
+      and this turns out to be case-sensitive. On WinXP it finds .acs files, but on
+      Win98 it should find .ACS files... :-/
+0.06  September 30, 2004
     - Rewrote the module from scratch.
     - No more wrappers, the constructor loads the OLE object and
       autoload does the rest

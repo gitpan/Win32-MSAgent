@@ -1,7 +1,7 @@
 package Win32::MSAgent;
 use strict;
 use warnings;
-our $VERSION = 0.06;
+our $VERSION = 0.07;
 use Win32::OLE;
 use Win32::SAPI4;
 use File::Find::Rule;
@@ -80,10 +80,7 @@ sub GetInstalledCharacters
     my $self = shift;
     # Find installed characters on this system
     my $systemroot = $ENV{SYSTEMROOT} || $ENV{WINDIR} || 'C:\WINDOWS';
-    my (@chars, %chars);
-    %chars = map{if (lc(substr($_, -4)) eq '.acs') { ucfirst(lc(substr(basename($_), 0, -4))) => $_}}
-                 File::Find::Rule->file->name('*.acs')->in("$systemroot\\msagent");
-    @chars = keys %chars;
+    return map{if (lc(substr($_, -4)) eq '.acs') { ucfirst(lc(substr(basename($_), 0, -4))) }} File::Find::Rule->file->name(qr/\.acs/i)->in("$systemroot\\msagent\\chars");
 }
 
 =pod
